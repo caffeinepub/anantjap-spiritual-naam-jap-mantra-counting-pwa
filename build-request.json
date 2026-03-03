@@ -1,61 +1,41 @@
 {
   "kind": "build_request",
-  "title": "Convert bottom navigation to left sidebar with icons, tooltips, and god image",
+  "title": "Fix calendar view sizing in DashboardPage to be properly visible and well-fitted",
   "projectName": "AnantJap",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-5",
-      "text": "Replace the existing BottomNav fixed bottom navigation bar with a fixed left sidebar navigation. The sidebar should display each nav item as an icon with a tooltip showing the item's name on hover. The sidebar should be narrow (icon-only) by default. Maintain the same five navigation tabs: Home, JapCount (with mala image), BhajanMarg, Dashboard, and Settings. Highlight the active page consistently with the existing spiritual theme.",
+      "id": "REQ-14",
+      "text": "Resize and reformat the calendar view in DashboardPage so it fits properly within the screen without overflowing or being clipped. The calendar grid must be compact, fully visible, and well-proportioned on both mobile and desktop viewport sizes. Ensure the calendar container uses constrained max-width, appropriate font sizes for day labels and date numbers, and sufficient but not excessive padding/margins so no part of the calendar is hidden or cut off. The calendar should remain styled consistently with the app's terracotta/cream theme.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "bottom menu to make left side bar with icon and tooltip for name"
+          "calenedar view to shring make proper visiable"
         ]
       },
       "acceptanceCriteria": [
-        "The BottomNav component is replaced by a left sidebar that is fixed to the left edge of the viewport.",
-        "Each nav item displays an icon; hovering over the icon shows a tooltip with the item's name.",
-        "The active page's nav item is visually highlighted in the sidebar.",
-        "All five existing nav tabs (Home, JapCount, BhajanMarg, Dashboard, Settings) are present in the sidebar.",
-        "The main content area is offset to the right to accommodate the sidebar width.",
-        "Localized labels are used for tooltip text, consistent with existing LanguageContext usage."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Display the currently selected god's image in the left sidebar using object-contain styling so the full image is visible without cropping. Place it above or below the navigation icons in a dedicated image slot within the sidebar.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "god image show in style is contain"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The selected deity's image is rendered inside the left sidebar.",
-        "The image uses object-contain so the full image is visible without cropping or overflow.",
-        "The image slot has a defined size that fits within the sidebar without distorting the layout.",
-        "If no god is selected, the image slot is hidden or shows a placeholder.",
-        "The image updates when the user selects a different deity."
+        "The calendar in DashboardPage is fully visible within the viewport on both mobile and desktop screen sizes.",
+        "No calendar cells, day headers, or navigation controls are clipped or overflow the screen.",
+        "The calendar appears compact and well-proportioned — not oversized or too spread out.",
+        "Day labels and date numbers are legible at appropriate font sizes.",
+        "The calendar container has a constrained max-width so it does not span the full page width unnecessarily.",
+        "Styling remains consistent with the app's terracotta (#C47A4A), dark-brown (#2A1A0E), and cream (#FAF5EE) color palette."
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files under frontend/src/hooks/ or frontend/src/components/ui/.",
-    "Preserve all existing LanguageContext translation keys and localized label usage.",
-    "Maintain the spiritual saffron/gold and deep indigo color theme in the sidebar styling."
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
+    "Do not change the existing date storage or parsing logic — the off-by-one fix already applied must remain intact.",
+    "Do not alter any backend logic."
   ],
   "nonGoals": [
-    "Adding new navigation tabs or changing existing routing logic.",
-    "Implementing an expandable/collapsible sidebar with full label text (icon + tooltip is sufficient).",
-    "Changing backend logic or data models.",
-    "Fixing the swipe-up gesture or datepicker styling (separate features)."
+    "Changing the calendar's date selection or jap count display logic.",
+    "Redesigning any page other than the DashboardPage calendar section.",
+    "Adding new calendar features or interactions.",
+    "Modifying backend data storage."
   ],
   "imageRequirements": {
     "required": [],

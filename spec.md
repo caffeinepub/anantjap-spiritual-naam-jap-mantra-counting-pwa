@@ -1,14 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the bottom navigation bar with a fixed left sidebar that shows icons with tooltips and displays the currently selected deity's image.
+**Goal:** Fix the calendar view in DashboardPage so it is fully visible, compact, and well-fitted on both mobile and desktop screens.
 
 **Planned changes:**
-- Remove the existing `BottomNav` bottom navigation component and replace it with a fixed left sidebar navigation.
-- Each nav item in the sidebar shows only an icon; hovering reveals a tooltip with the localized item name.
-- Highlight the active nav item using the existing saffron/gold and deep indigo spiritual theme.
-- Offset the main content area to the right to accommodate the sidebar width.
-- Add a dedicated image slot in the sidebar that displays the currently selected deity's image using `object-contain` styling so the full image is visible without cropping.
-- Hide the image slot or show a placeholder when no deity is selected; update the image when a different deity is chosen.
+- Constrain the calendar container with a max-width so it does not span the full page width unnecessarily.
+- Adjust font sizes for day labels and date numbers to be legible and compact.
+- Set appropriate padding and margins to prevent overflow or clipping of calendar cells, headers, and navigation controls.
+- Ensure the calendar remains fully visible within the viewport on both mobile and desktop sizes.
+- Maintain the existing terracotta (#C47A4A), dark-brown (#2A1A0E), and cream (#FAF5EE) color palette.
 
-**User-visible outcome:** Users see a narrow icon-only left sidebar with tooltips for navigation and their selected god's image displayed in full within the sidebar, replacing the previous bottom navigation bar.
+**User-visible outcome:** The calendar in DashboardPage is compact, fully visible, and properly proportioned on all screen sizes without any cells or controls being cut off or overflowing.

@@ -2,160 +2,209 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+
 @layer base {
     :root {
-        --radius: 1rem;
-        /* Spiritual pastel palette - Light mode */
-        --background: 0.98 0.01 30;
-        --foreground: 0.25 0.02 280;
-        --card: 1 0 0;
-        --card-foreground: 0.25 0.02 280;
-        --popover: 1 0 0;
-        --popover-foreground: 0.25 0.02 280;
-        --primary: 0.65 0.15 340;
-        --primary-foreground: 1 0 0;
-        --secondary: 0.92 0.05 60;
-        --secondary-foreground: 0.35 0.02 280;
-        --muted: 0.95 0.02 280;
-        --muted-foreground: 0.55 0.02 280;
-        --accent: 0.88 0.12 30;
-        --accent-foreground: 0.35 0.02 280;
-        --destructive: 0.60 0.20 25;
-        --destructive-foreground: 1 0 0;
-        --border: 0.90 0.02 280;
-        --input: 0.92 0.02 280;
-        --ring: 0.65 0.15 340;
-        --chart-1: 0.70 0.18 340;
-        --chart-2: 0.68 0.16 30;
-        --chart-3: 0.65 0.14 260;
-        --chart-4: 0.72 0.15 180;
-        --chart-5: 0.75 0.12 60;
-        --sidebar: 0.98 0.01 30;
-        --sidebar-foreground: 0.25 0.02 280;
-        --sidebar-primary: 0.65 0.15 340;
-        --sidebar-primary-foreground: 1 0 0;
-        --sidebar-accent: 0.92 0.05 60;
-        --sidebar-accent-foreground: 0.35 0.02 280;
-        --sidebar-border: 0.90 0.02 280;
-        --sidebar-ring: 0.65 0.15 340;
-        
-        /* Spiritual custom colors */
-        --lotus-pink: 0.75 0.15 350;
-        --sacred-orange: 0.70 0.18 40;
-        --divine-purple: 0.65 0.16 290;
-        --peaceful-blue: 0.72 0.12 240;
-        --golden-glow: 0.80 0.14 80;
+        --radius: 0.5rem;
+
+        /* AnantJap Logo-Inspired Palette — Light Mode */
+        /* Cream/off-white background from logo's white areas */
+        --background: 0.97 0.012 75;
+        /* Deep dark brown foreground from logo's petal/outline color */
+        --foreground: 0.18 0.04 50;
+
+        /* Card: slightly warmer cream */
+        --card: 0.95 0.018 70;
+        --card-foreground: 0.18 0.04 50;
+
+        --popover: 0.97 0.012 75;
+        --popover-foreground: 0.18 0.04 50;
+
+        /* Primary: warm terracotta/copper-brown from mandala ring */
+        --primary: 0.62 0.10 50;
+        --primary-foreground: 0.97 0.012 75;
+
+        /* Secondary: lighter warm tan */
+        --secondary: 0.90 0.03 70;
+        --secondary-foreground: 0.25 0.04 50;
+
+        /* Muted: soft warm grey-cream */
+        --muted: 0.92 0.02 70;
+        --muted-foreground: 0.50 0.04 55;
+
+        /* Accent: warm sandy tone */
+        --accent: 0.88 0.04 65;
+        --accent-foreground: 0.22 0.04 50;
+
+        --destructive: 0.55 0.20 25;
+        --destructive-foreground: 0.97 0.012 75;
+
+        --border: 0.85 0.03 65;
+        --input: 0.88 0.03 65;
+        --ring: 0.62 0.10 50;
+
+        /* Charts: terracotta family */
+        --chart-1: 0.62 0.10 50;
+        --chart-2: 0.50 0.08 45;
+        --chart-3: 0.72 0.08 60;
+        --chart-4: 0.40 0.06 40;
+        --chart-5: 0.78 0.06 70;
+
+        /* Sidebar: warm cream matching background */
+        --sidebar: 0.95 0.018 70;
+        --sidebar-foreground: 0.18 0.04 50;
+        --sidebar-primary: 0.62 0.10 50;
+        --sidebar-primary-foreground: 0.97 0.012 75;
+        --sidebar-accent: 0.88 0.04 65;
+        --sidebar-accent-foreground: 0.22 0.04 50;
+        --sidebar-border: 0.85 0.03 65;
+        --sidebar-ring: 0.62 0.10 50;
+
+        /* Custom brand tokens */
+        --terracotta: 0.62 0.10 50;
+        --dark-brown: 0.18 0.04 50;
+        --mid-brown: 0.38 0.07 48;
+        --cream: 0.97 0.012 75;
+        --warm-tan: 0.80 0.05 65;
     }
 
     .dark {
-        --background: 0.15 0.02 280;
-        --foreground: 0.95 0.01 30;
-        --card: 0.20 0.02 280;
-        --card-foreground: 0.95 0.01 30;
-        --popover: 0.18 0.02 280;
-        --popover-foreground: 0.95 0.01 30;
-        --primary: 0.70 0.18 340;
-        --primary-foreground: 0.15 0.02 280;
-        --secondary: 0.25 0.02 280;
-        --secondary-foreground: 0.95 0.01 30;
-        --muted: 0.25 0.02 280;
-        --muted-foreground: 0.65 0.02 280;
-        --accent: 0.30 0.05 280;
-        --accent-foreground: 0.95 0.01 30;
-        --destructive: 0.65 0.22 25;
-        --destructive-foreground: 0.15 0.02 280;
-        --border: 0.30 0.02 280;
-        --input: 0.28 0.02 280;
-        --ring: 0.70 0.18 340;
-        --chart-1: 0.70 0.18 340;
-        --chart-2: 0.68 0.16 30;
-        --chart-3: 0.65 0.14 260;
-        --chart-4: 0.72 0.15 180;
-        --chart-5: 0.75 0.12 60;
-        --sidebar: 0.18 0.02 280;
-        --sidebar-foreground: 0.95 0.01 30;
-        --sidebar-primary: 0.70 0.18 340;
-        --sidebar-primary-foreground: 0.15 0.02 280;
-        --sidebar-accent: 0.25 0.02 280;
-        --sidebar-accent-foreground: 0.95 0.01 30;
-        --sidebar-border: 0.30 0.02 280;
-        --sidebar-ring: 0.70 0.18 340;
-        
-        /* Spiritual custom colors - dark mode */
-        --lotus-pink: 0.70 0.18 350;
-        --sacred-orange: 0.68 0.20 40;
-        --divine-purple: 0.65 0.18 290;
-        --peaceful-blue: 0.70 0.14 240;
-        --golden-glow: 0.75 0.16 80;
+        /* Deep dark brown background from logo's petal color */
+        --background: 0.14 0.03 45;
+        --foreground: 0.93 0.015 70;
+
+        --card: 0.19 0.04 48;
+        --card-foreground: 0.93 0.015 70;
+
+        --popover: 0.17 0.035 46;
+        --popover-foreground: 0.93 0.015 70;
+
+        /* Primary: brighter terracotta for dark bg */
+        --primary: 0.68 0.12 50;
+        --primary-foreground: 0.14 0.03 45;
+
+        --secondary: 0.25 0.04 48;
+        --secondary-foreground: 0.90 0.015 70;
+
+        --muted: 0.24 0.04 48;
+        --muted-foreground: 0.62 0.04 60;
+
+        --accent: 0.28 0.05 50;
+        --accent-foreground: 0.90 0.015 70;
+
+        --destructive: 0.60 0.22 25;
+        --destructive-foreground: 0.14 0.03 45;
+
+        --border: 0.28 0.04 48;
+        --input: 0.26 0.04 48;
+        --ring: 0.68 0.12 50;
+
+        /* Charts: terracotta family — dark mode */
+        --chart-1: 0.68 0.12 50;
+        --chart-2: 0.58 0.10 45;
+        --chart-3: 0.75 0.09 60;
+        --chart-4: 0.45 0.08 40;
+        --chart-5: 0.80 0.07 70;
+
+        --sidebar: 0.17 0.035 46;
+        --sidebar-foreground: 0.93 0.015 70;
+        --sidebar-primary: 0.68 0.12 50;
+        --sidebar-primary-foreground: 0.14 0.03 45;
+        --sidebar-accent: 0.28 0.05 50;
+        --sidebar-accent-foreground: 0.90 0.015 70;
+        --sidebar-border: 0.28 0.04 48;
+        --sidebar-ring: 0.68 0.12 50;
+
+        /* Custom brand tokens — dark */
+        --terracotta: 0.68 0.12 50;
+        --dark-brown: 0.14 0.03 45;
+        --mid-brown: 0.42 0.08 48;
+        --cream: 0.93 0.015 70;
+        --warm-tan: 0.55 0.06 58;
     }
 
     * {
         @apply border-border;
     }
+
     body {
         @apply bg-background text-foreground;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cinzel', Georgia, serif;
     }
 }
 
 @layer utilities {
-    .spiritual-gradient {
-        background: linear-gradient(135deg, 
-            oklch(var(--lotus-pink)) 0%, 
-            oklch(var(--sacred-orange)) 50%, 
-            oklch(var(--divine-purple)) 100%);
+    /* AnantJap brand gradient: cream → terracotta → dark brown */
+    .anant-gradient {
+        background: linear-gradient(135deg,
+            oklch(var(--warm-tan)) 0%,
+            oklch(var(--terracotta)) 50%,
+            oklch(var(--mid-brown)) 100%);
     }
-    
-    .peaceful-gradient {
-        background: linear-gradient(135deg, 
-            oklch(var(--peaceful-blue)) 0%, 
-            oklch(var(--lotus-pink)) 100%);
-    }
-    
-    .golden-gradient {
-        background: linear-gradient(135deg, 
-            oklch(var(--golden-glow)) 0%, 
-            oklch(var(--sacred-orange)) 100%);
-    }
-    
-    .text-lotus {
-        color: oklch(var(--lotus-pink));
-    }
-    
-    .text-sacred {
-        color: oklch(var(--sacred-orange));
-    }
-    
-    .text-divine {
-        color: oklch(var(--divine-purple));
-    }
-    
-    .text-peaceful {
-        color: oklch(var(--peaceful-blue));
-    }
-    
-    .text-golden {
-        color: oklch(var(--golden-glow));
-    }
-    
-    .bg-lotus {
-        background-color: oklch(var(--lotus-pink));
-    }
-    
-    .bg-sacred {
-        background-color: oklch(var(--sacred-orange));
-    }
-    
-    .bg-divine {
-        background-color: oklch(var(--divine-purple));
-    }
-    
-    .bg-peaceful {
-        background-color: oklch(var(--peaceful-blue));
-    }
-    
-    .bg-golden {
-        background-color: oklch(var(--golden-glow));
-    }
-}
 
+    /* Kept for backward compat — maps to anant-gradient */
+    .spiritual-gradient {
+        background: linear-gradient(135deg,
+            oklch(var(--warm-tan)) 0%,
+            oklch(var(--terracotta)) 50%,
+            oklch(var(--mid-brown)) 100%);
+    }
+
+    .peaceful-gradient {
+        background: linear-gradient(135deg,
+            oklch(var(--cream)) 0%,
+            oklch(var(--warm-tan)) 100%);
+    }
+
+    .golden-gradient {
+        background: linear-gradient(135deg,
+            oklch(var(--warm-tan)) 0%,
+            oklch(var(--terracotta)) 100%);
+    }
+
+    /* Utility text colors */
+    .text-terracotta {
+        color: oklch(var(--terracotta));
+    }
+    .text-dark-brown {
+        color: oklch(var(--dark-brown));
+    }
+    .text-mid-brown {
+        color: oklch(var(--mid-brown));
+    }
+    .text-cream {
+        color: oklch(var(--cream));
+    }
+    .text-warm-tan {
+        color: oklch(var(--warm-tan));
+    }
+
+    /* Legacy aliases */
+    .text-lotus    { color: oklch(var(--terracotta)); }
+    .text-sacred   { color: oklch(var(--terracotta)); }
+    .text-divine   { color: oklch(var(--mid-brown)); }
+    .text-peaceful { color: oklch(var(--warm-tan)); }
+    .text-golden   { color: oklch(var(--warm-tan)); }
+
+    /* Utility bg colors */
+    .bg-terracotta  { background-color: oklch(var(--terracotta)); }
+    .bg-dark-brown  { background-color: oklch(var(--dark-brown)); }
+    .bg-mid-brown   { background-color: oklch(var(--mid-brown)); }
+    .bg-cream       { background-color: oklch(var(--cream)); }
+    .bg-warm-tan    { background-color: oklch(var(--warm-tan)); }
+
+    /* Legacy aliases */
+    .bg-lotus    { background-color: oklch(var(--terracotta)); }
+    .bg-sacred   { background-color: oklch(var(--terracotta)); }
+    .bg-divine   { background-color: oklch(var(--mid-brown)); }
+    .bg-peaceful { background-color: oklch(var(--warm-tan)); }
+    .bg-golden   { background-color: oklch(var(--warm-tan)); }
+
+    /* Sacred border */
+    .border-sacred { border-color: oklch(var(--terracotta)); }
+}

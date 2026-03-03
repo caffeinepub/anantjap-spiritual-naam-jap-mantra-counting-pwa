@@ -17,6 +17,17 @@ interface GodData {
   image: string;
 }
 
+/**
+ * Returns a YYYY-MM-DD date string in the user's LOCAL timezone,
+ * avoiding the UTC offset bug from toISOString().
+ */
+function getLocalDateKey(date: Date = new Date()): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 export default function JapCountPage({ selectedGodId, onBack }: JapCountPageProps) {
   const { t, language } = useLanguage();
   const { currentDevotee } = useDevotee();
@@ -115,8 +126,8 @@ export default function JapCountPage({ selectedGodId, onBack }: JapCountPageProp
     };
     localStorage.setItem(key, JSON.stringify(data));
 
-    // Save daily history
-    const today = new Date().toISOString().split('T')[0];
+    // Save daily history using LOCAL date key (not UTC) to avoid timezone offset bug
+    const today = getLocalDateKey();
     const historyKey = `anantjap_history_${currentDevotee.id}_${selectedGodId}_${today}`;
     const historyData = localStorage.getItem(historyKey);
     const currentDailyCount = historyData ? JSON.parse(historyData).count : 0;
@@ -247,4 +258,3 @@ export default function JapCountPage({ selectedGodId, onBack }: JapCountPageProp
     </div>
   );
 }
-

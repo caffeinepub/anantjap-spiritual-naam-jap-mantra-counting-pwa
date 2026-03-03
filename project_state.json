@@ -1,13 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 17,
   "summary": "Spiritual naam jap / mantra counting PWA with datepicker and swipe-up count functionality.",
   "architectural_notes": [],
   "known_issues": [
     "Swipe up count gesture not functioning correctly",
-    "Image card top area appears blank instead of showing a full-cover image"
+    "Image card top area appears blank instead of showing a full-cover image",
+    "Header shows two logos instead of one, and text/font appears transparent/invisible due to background color issues",
+    "Calendar date display has off-by-one error: jap recorded on a date appears on the next date (likely UTC/timezone offset bug)",
+    "Calendar view is too large or not properly visible on screen"
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-fix-the-godcard-component-so-that-the-deity-image-fully-covers-the-top-area-of-the-card-with-no-blank-empty-space-the-image-container-at-the-top-of-the-card-must-use-object-cover-and-fill-the-entire-designated-area-ensuring-no-background-bleed-or-empty-region-is-visible-regardless-of-the-image-s-aspect-ratio-or-source",
@@ -30,6 +33,70 @@
       "title": "Display the currently selected god's image in the left sidebar using object-contain styling so the full image is visible without cropping. Place it above or below the navigation icons in a dedicated image slot within the sidebar.",
       "reqIds": [
         "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-global-color-theme-across-the-entire-app-to-match-the-anantjap-logo-palette-use-warm-terracotta-copper-brown-c47a4a-or-similar-as-the-primary-accent-color-deep-dark-brown-near-black-2a1a0e-or-similar-as-the-dark-background-and-bold-element-color-and-soft-off-white-cream-faf5ee-or-similar-as-the-light-background-replace-the-existing-saffron-gold-and-indigo-variables-in-frontend-src-index-css-and-frontend-tailwind-config-js-with-these-logo-derived-colors-apply-the-updated-css-variables-consistently-to-all-components-header-leftsidebar-godcard-japcountpage-bhajanmargpage-dashboardpage-settingspage-footer-and-any-buttons-cards-and-interactive-elements-ensure-both-light-and-dark-modes-respect-the-new-palette",
+      "title": "Update the global color theme across the entire app to match the AnantJap logo palette: use warm terracotta/copper-brown (#C47A4A or similar) as the primary accent color, deep dark brown/near-black (#2A1A0E or similar) as the dark background and bold element color, and soft off-white/cream (#FAF5EE or similar) as the light background. Replace the existing saffron/gold and indigo variables in frontend/src/index.css and frontend/tailwind.config.js with these logo-derived colors. Apply the updated CSS variables consistently to all components: Header, LeftSidebar, GodCard, JapCountPage, BhajanMargPage, DashboardPage, SettingsPage, Footer, and any buttons, cards, and interactive elements. Ensure both light and dark modes respect the new palette.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-place-the-uploaded-anantjap-logo-original-png-saved-as-frontend-public-assets-generated-anantjap-logo-png-in-the-header-component-replacing-or-complementing-the-current-text-only-brand-name-display-the-logo-image-at-an-appropriate-small-size-e-g-36-40px-height-aligned-to-the-left-of-the-header-alongside-or-instead-of-the-anantjap-text-label-also-display-the-logo-at-the-top-of-the-leftsidebar-above-the-navigation-icons-as-a-small-icon-e-g-40-40px-to-reinforce-branding",
+      "title": "Place the uploaded AnantJap logo (original.png, saved as frontend/public/assets/generated/anantjap-logo.png) in the Header component, replacing or complementing the current text-only brand name. Display the logo image at an appropriate small size (e.g., 36–40px height) aligned to the left of the header alongside or instead of the 'AnantJap' text label. Also display the logo at the top of the LeftSidebar above the navigation icons as a small icon (e.g., 40×40px) to reinforce branding.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-header-component-so-that-only-one-anantjap-logo-image-is-displayed-remove-any-duplicate-logo-rendering-ensure-the-logo-image-anantjap-logo-png-appears-exactly-once-on-the-left-side-of-the-header",
+      "title": "Fix the Header component so that only one AnantJap logo image is displayed. Remove any duplicate logo rendering — ensure the logo image (anantjap-logo.png) appears exactly once on the left side of the header.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-any-opaque-or-colored-background-from-the-header-component-so-the-header-background-is-either-transparent-or-uses-the-app-s-base-page-background-color-the-header-must-not-have-a-solid-fill-that-obscures-or-blends-with-the-logo-or-text",
+      "title": "Remove any opaque or colored background from the Header component so the header background is either transparent or uses the app's base page background color. The header must not have a solid fill that obscures or blends with the logo or text.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-brand-name-text-e-g-anantjap-in-the-header-so-it-is-fully-visible-and-legible-remove-any-css-property-causing-transparent-or-invisible-text-such-as-transparent-color-opacity-0-or-color-matching-the-background-ensure-the-text-uses-a-high-contrast-color-from-the-app-s-theme-palette-e-g-the-cream-off-white-faf5ee-in-dark-mode-or-dark-brown-2a1a0e-in-light-mode",
+      "title": "Fix the brand name text (e.g., 'AnantJap') in the Header so it is fully visible and legible. Remove any CSS property causing transparent or invisible text (such as transparent color, opacity:0, or color matching the background). Ensure the text uses a high-contrast color from the app's theme palette (e.g., the cream/off-white #FAF5EE in dark mode or dark-brown #2A1A0E in light mode).",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-dashboardpage-calendar-view-clicking-on-a-date-should-display-the-jap-count-recorded-for-that-specific-date-when-a-user-taps-or-clicks-any-date-on-the-calendar-show-the-jap-total-for-that-date-retrieved-from-localstorage-daily-jap-records-if-no-jap-data-exists-for-the-selected-date-display-a-zero-count-or-a-friendly-no-japs-recorded-message-the-selected-date-should-be-visually-highlighted-and-the-jap-count-should-appear-clearly-near-or-below-the-calendar-styled-consistently-with-the-app-s-terracotta-cream-theme",
+      "title": "In the DashboardPage calendar view, clicking on a date should display the jap count recorded for that specific date. When a user taps or clicks any date on the calendar, show the jap total for that date (retrieved from localStorage daily jap records). If no jap data exists for the selected date, display a zero count or a friendly 'No japs recorded' message. The selected date should be visually highlighted and the jap count should appear clearly near or below the calendar, styled consistently with the app's terracotta/cream theme.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-off-by-one-date-display-bug-in-dashboardpage-when-a-jap-is-recorded-on-a-given-date-e-g-march-3-it-must-appear-on-that-same-date-in-the-calendar-view-not-on-the-next-date-march-4-audit-all-date-key-generation-and-parsing-logic-used-when-saving-jap-counts-to-localstorage-and-when-reading-them-back-for-the-calendar-ensure-dates-are-stored-and-compared-using-local-time-not-utc-so-that-timezone-offsets-do-not-shift-the-displayed-date-forward-by-one-day-apply-the-fix-consistently-for-both-writing-japcountpage-and-reading-dashboardpage",
+      "title": "Fix the off-by-one date display bug in DashboardPage: when a jap is recorded on a given date (e.g., March 3), it must appear on that same date in the calendar view — not on the next date (March 4). Audit all date key generation and parsing logic used when saving jap counts to localStorage and when reading them back for the calendar. Ensure dates are stored and compared using local time (not UTC), so that timezone offsets do not shift the displayed date forward by one day. Apply the fix consistently for both writing (JapCountPage) and reading (DashboardPage).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-resize-and-reformat-the-calendar-view-in-dashboardpage-so-it-fits-properly-within-the-screen-without-overflowing-or-being-clipped-the-calendar-grid-must-be-compact-fully-visible-and-well-proportioned-on-both-mobile-and-desktop-viewport-sizes-ensure-the-calendar-container-uses-constrained-max-width-appropriate-font-sizes-for-day-labels-and-date-numbers-and-sufficient-but-not-excessive-padding-margins-so-no-part-of-the-calendar-is-hidden-or-cut-off-the-calendar-should-remain-styled-consistently-with-the-app-s-terracotta-cream-theme",
+      "title": "Resize and reformat the calendar view in DashboardPage so it fits properly within the screen without overflowing or being clipped. The calendar grid must be compact, fully visible, and well-proportioned on both mobile and desktop viewport sizes. Ensure the calendar container uses constrained max-width, appropriate font sizes for day labels and date numbers, and sufficient but not excessive padding/margins so no part of the calendar is hidden or cut off. The calendar should remain styled consistently with the app's terracotta/cream theme.",
+      "reqIds": [
+        "REQ-14"
       ],
       "version": 1
     }
@@ -80,6 +147,36 @@
     {
       "id": "AR-7",
       "summary": "Convert bottom navigation menu to a left sidebar with icons and tooltips showing the nav item names; display the god image in the sidebar using object-contain style",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Use the provided logo and update the app theme/color scheme to match the logo's colors and aesthetic",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Fix header: remove duplicate logo, remove background color from header so logo/text is visible, ensure font/text is visible (not transparent)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "In the calendar/datepicker view, clicking on a date should show the jap count recorded for that date",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Fix date offset bug: jap recorded on March 3 is showing as March 4 in the calendar view (likely a timezone/UTC offset issue in date parsing or storage)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Fix calendar view in DashboardPage: shrink/resize it to be properly visible and well-fitted within the screen",
       "reqIds": [],
       "status": "pending"
     }

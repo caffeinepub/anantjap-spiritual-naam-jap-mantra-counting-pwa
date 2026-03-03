@@ -28,14 +28,19 @@ export default function LeftSidebar({ currentPage, onNavigate, godImageSrc, godN
 
   return (
     <TooltipProvider delayDuration={200}>
-      <nav className="fixed left-0 top-0 bottom-0 z-50 w-[72px] flex flex-col items-center border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
-        {/* Top spacer to align below header */}
-        <div className="h-16 w-full flex items-center justify-center border-b border-border/50">
-          <div className="w-8 h-8 rounded-full spiritual-gradient opacity-70" />
+      <nav className="fixed left-0 top-0 bottom-0 z-50 w-[72px] flex flex-col items-center border-r border-border bg-sidebar/95 backdrop-blur supports-[backdrop-filter]:bg-sidebar/80 shadow-sm">
+
+        {/* Logo slot — aligns with header height */}
+        <div className="h-16 w-full flex items-center justify-center border-b border-border/50 flex-shrink-0">
+          <img
+            src="/assets/generated/anantjap-logo.dim_256x256.png"
+            alt="AnantJap"
+            className="h-10 w-10 object-contain"
+          />
         </div>
 
         {/* Nav Items */}
-        <div className="flex-1 flex flex-col items-center gap-1 py-4 w-full">
+        <div className="flex-1 flex flex-col items-center gap-1 py-4 w-full overflow-y-auto">
           {navItems.map((item) => {
             const isActive = currentPage === item.id;
             return (
@@ -43,16 +48,16 @@ export default function LeftSidebar({ currentPage, onNavigate, godImageSrc, godN
                 <TooltipTrigger asChild>
                   <button
                     onClick={() => onNavigate(item.id as 'home' | 'japcount' | 'bhajanmarg' | 'dashboard' | 'settings')}
-                    className={`relative flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-200 group ${
+                    className={`relative flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-200 group ${
                       isActive
-                        ? 'spiritual-gradient text-white shadow-md scale-105'
+                        ? 'anant-gradient text-cream shadow-md scale-105'
                         : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                     }`}
                     aria-label={item.label}
                   >
                     {/* Active indicator bar */}
                     {isActive && (
-                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-sacred-orange" />
+                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-terracotta" />
                     )}
 
                     {item.type === 'icon' && item.icon && (
@@ -81,12 +86,12 @@ export default function LeftSidebar({ currentPage, onNavigate, godImageSrc, godN
 
         {/* God Image Slot */}
         {godImageSrc && (
-          <div className="w-full px-2 pb-4 flex flex-col items-center gap-1">
+          <div className="w-full px-2 pb-4 flex flex-col items-center gap-1 flex-shrink-0">
             <div className="w-full h-px bg-border/50 mb-2" />
             <Tooltip>
               <TooltipTrigger asChild>
                 <div
-                  className="w-14 h-14 rounded-xl overflow-hidden border-2 border-primary/30 shadow-md cursor-pointer hover:border-primary/60 transition-all duration-200 bg-accent/30"
+                  className="w-14 h-14 rounded-lg overflow-hidden border-2 border-terracotta/40 shadow-md cursor-pointer hover:border-terracotta/80 transition-all duration-200 bg-accent/30"
                   onClick={() => onNavigate('japcount')}
                 >
                   <img
@@ -104,7 +109,7 @@ export default function LeftSidebar({ currentPage, onNavigate, godImageSrc, godN
         )}
 
         {/* Bottom padding */}
-        <div className="h-4" />
+        <div className="h-4 flex-shrink-0" />
       </nav>
     </TooltipProvider>
   );

@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/select';
 
 export default function Header() {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
   const languageOptions: { value: Language; label: string }[] = [
     { value: 'sanskrit', label: 'संस्कृतम्' },
@@ -19,14 +19,14 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between px-4">
-        <div className="flex items-center gap-2">
-          <div className="text-2xl font-bold spiritual-gradient bg-clip-text text-transparent">
-            ॐ AnantJap
-          </div>
-        </div>
-        
+    <header className="sticky top-0 z-40 w-full border-b border-border/50">
+      <div className="flex h-16 items-center justify-between px-4">
+        {/* Brand name only — logo is shown in the LeftSidebar */}
+        <span className="font-heading text-xl font-bold tracking-wide text-foreground">
+          AnantJap
+        </span>
+
+        {/* Language selector */}
         <div className="flex items-center gap-2">
           <Languages className="h-4 w-4 text-muted-foreground" />
           <Select value={language} onValueChange={(value) => setLanguage(value as Language)}>
@@ -46,4 +46,3 @@ export default function Header() {
     </header>
   );
 }
-

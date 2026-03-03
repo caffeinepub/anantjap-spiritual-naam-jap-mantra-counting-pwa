@@ -1,41 +1,24 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-03-03T11:00:24.189Z",
+  "generatedAt": "2026-03-03T13:12:45.348Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-5",
-        "summary": "Replace the existing BottomNav fixed bottom navigation bar with a fixed left sidebar navigation. The sidebar should display each nav item as an icon with a tooltip showing the item's name on hover. The sidebar should be narrow (icon-only) by default. Maintain the same five navigation tabs: Home, JapCount (with mala image), BhajanMarg, Dashboard, and Settings. Highlight the active page consistently with the existing spiritual theme.",
+        "id": "REQ-14",
+        "summary": "Resize and reformat the calendar view in DashboardPage so it fits properly within the screen without overflowing or being clipped. The calendar grid must be compact, fully visible, and well-proportioned on both mobile and desktop viewport sizes. Ensure the calendar container uses constrained max-width, appropriate font sizes for day labels and date numbers, and sufficient but not excessive padding/margins so no part of the calendar is hidden or cut off. The calendar should remain styled consistently with the app's terracotta/cream theme.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/LeftSidebar.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/components/BottomNav.tsx"
+          "frontend/src/pages/DashboardPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/LeftSidebar.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/components/BottomNav.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Display the currently selected god's image in the left sidebar using object-contain styling so the full image is visible without cropping. Place it above or below the navigation icons in a dedicated image slot within the sidebar.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/LeftSidebar.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/LeftSidebar.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/pages/DashboardPage.tsx"
         ]
       }
     ]
@@ -45,9 +28,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
-    "frontend/src/components/BottomNav.tsx",
-    "frontend/src/components/LeftSidebar.tsx",
+    "frontend/src/pages/DashboardPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

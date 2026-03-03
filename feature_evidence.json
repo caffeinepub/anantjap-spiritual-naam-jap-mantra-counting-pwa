@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-replace-the-existing-bottomnav-fixed-bottom-navigation-bar-with-a-fixed-left-sidebar-navigation-the-sidebar-should-display-each-nav-item-as-an-icon-with-a-tooltip-showing-the-item-s-name-on-hover-the-sidebar-should-be-narrow-icon-only-by-default-maintain-the-same-five-navigation-tabs-home-japcount-with-mala-image-bhajanmarg-dashboard-and-settings-highlight-the-active-page-consistently-with-the-existing-spiritual-theme",
-      "featureTitle": "Replace the existing BottomNav fixed bottom navigation bar with a fixed left sidebar navigation. The sidebar should display each nav item as an icon with a tooltip showing the item's name on hover. The sidebar should be narrow (icon-only) by default. Maintain the same five navigation tabs: Home, JapCount (with mala image), BhajanMarg, Dashboard, and Settings. Highlight the active page consistently with the existing spiritual theme.",
+      "featureId": "feature-resize-and-reformat-the-calendar-view-in-dashboardpage-so-it-fits-properly-within-the-screen-without-overflowing-or-being-clipped-the-calendar-grid-must-be-compact-fully-visible-and-well-proportioned-on-both-mobile-and-desktop-viewport-sizes-ensure-the-calendar-container-uses-constrained-max-width-appropriate-font-sizes-for-day-labels-and-date-numbers-and-sufficient-but-not-excessive-padding-margins-so-no-part-of-the-calendar-is-hidden-or-cut-off-the-calendar-should-remain-styled-consistently-with-the-app-s-terracotta-cream-theme",
+      "featureTitle": "Resize and reformat the calendar view in DashboardPage so it fits properly within the screen without overflowing or being clipped. The calendar grid must be compact, fully visible, and well-proportioned on both mobile and desktop viewport sizes. Ensure the calendar container uses constrained max-width, appropriate font sizes for day labels and date numbers, and sufficient but not excessive padding/margins so no part of the calendar is hidden or cut off. The calendar should remain styled consistently with the app's terracotta/cream theme.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/BottomNav.tsx",
-        "frontend/src/components/LeftSidebar.tsx"
+        "frontend/src/pages/DashboardPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -17,26 +15,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-display-the-currently-selected-god-s-image-in-the-left-sidebar-using-object-contain-styling-so-the-full-image-is-visible-without-cropping-place-it-above-or-below-the-navigation-icons-in-a-dedicated-image-slot-within-the-sidebar",
-      "featureTitle": "Display the currently selected god's image in the left sidebar using object-contain styling so the full image is visible without cropping. Place it above or below the navigation icons in a dedicated image slot within the sidebar.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/LeftSidebar.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
+        "REQ-14"
       ],
       "confidence": "high"
     }

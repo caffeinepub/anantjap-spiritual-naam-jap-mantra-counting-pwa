@@ -15,6 +15,10 @@ export default {
             }
         },
         extend: {
+            fontFamily: {
+                heading: ['Cinzel', 'Georgia', 'serif'],
+                body: ['Lato', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+            },
             colors: {
                 border: 'oklch(var(--border))',
                 input: 'oklch(var(--input))',
@@ -65,7 +69,13 @@ export default {
                     'accent-foreground': 'oklch(var(--sidebar-accent-foreground))',
                     border: 'oklch(var(--sidebar-border))',
                     ring: 'oklch(var(--sidebar-ring))'
-                }
+                },
+                /* AnantJap brand tokens */
+                terracotta: 'oklch(var(--terracotta))',
+                'dark-brown': 'oklch(var(--dark-brown))',
+                'mid-brown': 'oklch(var(--mid-brown))',
+                cream: 'oklch(var(--cream))',
+                'warm-tan': 'oklch(var(--warm-tan))',
             },
             borderRadius: {
                 lg: 'var(--radius)',
@@ -73,7 +83,8 @@ export default {
                 sm: 'calc(var(--radius) - 4px)'
             },
             boxShadow: {
-                xs: '0 1px 2px 0 rgba(0,0,0,0.05)'
+                xs: '0 1px 2px 0 rgba(0,0,0,0.05)',
+                sacred: '0 4px 16px 0 oklch(var(--terracotta) / 0.18)',
             },
             keyframes: {
                 'accordion-down': {
