@@ -1,0 +1,59 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Convert bottom navigation to left sidebar with icons, tooltips, and god image",
+  "requirements": [
+    {
+      "id": "REQ-5",
+      "summary": "Replace BottomNav with a fixed left sidebar showing icon-only navigation with tooltips and active page highlighting",
+      "acceptanceCriteria": [
+        "The BottomNav component is replaced by a left sidebar that is fixed to the left edge of the viewport.",
+        "Each nav item displays an icon; hovering over the icon shows a tooltip with the item's name.",
+        "The active page's nav item is visually highlighted in the sidebar.",
+        "All five existing nav tabs (Home, JapCount, BhajanMarg, Dashboard, Settings) are present in the sidebar.",
+        "The main content area is offset to the right to accommodate the sidebar width.",
+        "Localized labels are used for tooltip text, consistent with existing LanguageContext usage."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/LeftSidebar.tsx",
+          "operation": "create",
+          "description": "Create a new LeftSidebar component that renders a fixed left-side navigation bar displaying five nav items (Home, JapCount, BhajanMarg, Dashboard, Settings) as icons. Each icon should have a tooltip that appears on hover showing the localized name using the LanguageContext `t` function. The active page should be visually highlighted using the spiritual theme colors (saffron/gold for active state). The sidebar should have a narrow width (e.g., 80px) to accommodate icon-only layout. Use lucide-react icons for Home, BhajanMarg, Dashboard, and Settings, and reference the mala beads image at frontend/public/assets/generated/mala-beads.dim_300x300.png for the JapCount tab. Ensure the component receives the currentPage prop and includes a slot for the deity image."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the BottomNav component import and usage with the new LeftSidebar component. Update the layout structure so that LeftSidebar is fixed to the left edge and the main content area (containing Header and page routes) is offset to the right by the sidebar width. Pass the current page state and selected god data to LeftSidebar. Ensure the main content wrapper has appropriate left padding or margin to prevent overlap with the fixed sidebar."
+        },
+        {
+          "path": "frontend/src/components/BottomNav.tsx",
+          "operation": "delete",
+          "description": "Remove the BottomNav component file as it is being replaced by LeftSidebar."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Display the selected god's image in the left sidebar using object-contain styling",
+      "acceptanceCriteria": [
+        "The selected deity's image is rendered inside the left sidebar.",
+        "The image uses object-contain so the full image is visible without cropping or overflow.",
+        "The image slot has a defined size that fits within the sidebar without distorting the layout.",
+        "If no god is selected, the image slot is hidden or shows a placeholder.",
+        "The image updates when the user selects a different deity."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/LeftSidebar.tsx",
+          "operation": "modify",
+          "description": "Add a deity image slot within the LeftSidebar component positioned either above or below the navigation icons. The image should receive the selected god's image path as a prop and render it with object-contain styling to ensure the full image is visible without cropping. Define a fixed height container (e.g., 120px) for the image slot that fits within the sidebar width. If no god is selected (null/undefined), hide the image slot or display a placeholder. Ensure the image updates reactively when the selected god changes."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Pass the selected god's image data to the LeftSidebar component so it can display the current deity's image. Ensure the selectedGod state (or equivalent) is accessible and passed as a prop to LeftSidebar."
+        }
+      ]
+    }
+  ]
+}

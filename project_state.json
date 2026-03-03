@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Spiritual naam jap / mantra counting PWA with datepicker and swipe-up count functionality.",
+  "architectural_notes": [],
+  "known_issues": [
+    "Swipe up count gesture not functioning correctly",
+    "Image card top area appears blank instead of showing a full-cover image"
+  ],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-fix-the-godcard-component-so-that-the-deity-image-fully-covers-the-top-area-of-the-card-with-no-blank-empty-space-the-image-container-at-the-top-of-the-card-must-use-object-cover-and-fill-the-entire-designated-area-ensuring-no-background-bleed-or-empty-region-is-visible-regardless-of-the-image-s-aspect-ratio-or-source",
+      "title": "Fix the GodCard component so that the deity image fully covers the top area of the card with no blank/empty space. The image container at the top of the card must use object-cover and fill the entire designated area, ensuring no background bleed or empty region is visible regardless of the image's aspect ratio or source.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-bottomnav-fixed-bottom-navigation-bar-with-a-fixed-left-sidebar-navigation-the-sidebar-should-display-each-nav-item-as-an-icon-with-a-tooltip-showing-the-item-s-name-on-hover-the-sidebar-should-be-narrow-icon-only-by-default-maintain-the-same-five-navigation-tabs-home-japcount-with-mala-image-bhajanmarg-dashboard-and-settings-highlight-the-active-page-consistently-with-the-existing-spiritual-theme",
+      "title": "Replace the existing BottomNav fixed bottom navigation bar with a fixed left sidebar navigation. The sidebar should display each nav item as an icon with a tooltip showing the item's name on hover. The sidebar should be narrow (icon-only) by default. Maintain the same five navigation tabs: Home, JapCount (with mala image), BhajanMarg, Dashboard, and Settings. Highlight the active page consistently with the existing spiritual theme.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-currently-selected-god-s-image-in-the-left-sidebar-using-object-contain-styling-so-the-full-image-is-visible-without-cropping-place-it-above-or-below-the-navigation-icons-in-a-dedicated-image-slot-within-the-sidebar",
+      "title": "Display the currently selected god's image in the left sidebar using object-contain styling so the full image is visible without cropping. Place it above or below the navigation icons in a dedicated image slot within the sidebar.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Change overall UI look/design",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Fix swipe up count not working",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Redesign the overall UI with a fresh spiritual aesthetic: use warm saffron/gold as the primary accent, deep indigo/midnight as the background in dark mode, and soft cream/ivory in light mode. Update typography to feel more sacred and elegant. Apply consistent rounded cards, subtle gradients, and refined spacing across all pages (HomePage, JapCountPage, DashboardPage, BhajanMargPage, SettingsPage, BottomNav, Header, Footer). Ensure the new theme is applied uniformly via CSS variables in index.css and tailwind.config.js.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Fix the swipe-up gesture in JapCountPage so that swiping upward on the jap counter area correctly increments the jap/mala count. Audit the current touch event handlers (touchstart, touchmove, touchend) to ensure the swipe direction is correctly detected, the delta threshold is appropriate, and the count is incremented and persisted to localStorage on a valid upward swipe. Prevent accidental double-counts from the same swipe gesture.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Update the datepicker component in DashboardPage to match the new UI theme: style the calendar/datepicker with the new saffron/gold accent colors, rounded corners, and spiritual aesthetic consistent with REQ-1.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Fix image card top area showing blank — image should cover the full top area of the card",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Convert bottom navigation menu to a left sidebar with icons and tooltips showing the nav item names; display the god image in the sidebar using object-contain style",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Spiritual Naam Jap / Mantra Counting",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
