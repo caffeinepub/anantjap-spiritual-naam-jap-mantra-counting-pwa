@@ -1,24 +1,29 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix calendar view sizing in DashboardPage to be properly visible and well-fitted",
+  "title": "Redesign DashboardPage calendar with stylish, elegant spiritual aesthetic",
   "requirements": [
     {
-      "id": "REQ-14",
-      "summary": "Resize and reformat the calendar view in DashboardPage so it fits properly within the screen without overflowing or being clipped, ensuring compact display and proper visibility on both mobile and desktop viewports while maintaining the app's terracotta/cream theme.",
+      "id": "REQ-15",
+      "summary": "Redesign the DashboardPage calendar with an elegant, spiritual aesthetic using the terracotta/cream theme, featuring styled month navigation, day labels, refined date cells with hover states, visual distinction for today and selected dates, indicators for dates with jap data, and smooth transitions while preserving all existing functionality",
       "acceptanceCriteria": [
-        "The calendar in DashboardPage is fully visible within the viewport on both mobile and desktop screen sizes.",
-        "No calendar cells, day headers, or navigation controls are clipped or overflow the screen.",
-        "The calendar appears compact and well-proportioned — not oversized or too spread out.",
-        "Day labels and date numbers are legible at appropriate font sizes.",
-        "The calendar container has a constrained max-width so it does not span the full page width unnecessarily.",
-        "Styling remains consistent with the app's terracotta (#C47A4A), dark-brown (#2A1A0E), and cream (#FAF5EE) color palette."
+        "The calendar renders inside a visually elevated card with rounded corners and a soft shadow, using the terracotta/cream/dark-brown palette.",
+        "Month/year header is clearly displayed with styled prev/next navigation controls.",
+        "Day-of-week labels (Sun–Sat) are styled in the terracotta accent color.",
+        "Today's date is visually distinguished from other dates (e.g., terracotta ring or border).",
+        "The selected date cell has a solid terracotta background with cream-colored text.",
+        "Dates with jap data recorded display a small dot or accent indicator beneath the date number.",
+        "Hover and focus states on date cells are smooth and theme-consistent.",
+        "The calendar uses Cinzel or Lato fonts consistent with the rest of the app.",
+        "All existing date-click functionality (showing jap count for selected date) continues to work correctly.",
+        "The calendar is fully visible and non-overflowing on both mobile and desktop viewports.",
+        "Both light and dark theme modes apply appropriate background and text colors to the calendar."
       ],
       "file_operations": [
         {
           "path": "frontend/src/pages/DashboardPage.tsx",
           "operation": "modify",
-          "description": "Apply responsive sizing constraints to the calendar component by adding a constrained max-width wrapper (e.g., max-w-2xl or max-w-3xl) around the calendar section. Reduce font sizes for day headers and date numbers to compact values (e.g., text-xs or text-sm for headers, text-sm for date numbers). Adjust padding and margins within calendar cells to reduce overall calendar dimensions while maintaining legibility. Ensure the calendar container uses responsive padding (e.g., p-2 sm:p-4) and that all month navigation controls remain visible. Verify calendar grid styling uses appropriate gap spacing (e.g., gap-1 or gap-2) to keep cells compact. Test viewport fit on mobile (375px) and desktop (1280px+) breakpoints to confirm no overflow or clipping occurs. Preserve existing terracotta, dark-brown, and cream color classes throughout the calendar styling."
+          "description": "Redesign the calendar section with an elegant spiritual aesthetic: wrap the calendar in a card component with rounded corners (rounded-xl) and soft shadow (shadow-lg); style the month/year header with Cinzel font, larger text, and refined prev/next arrow buttons with hover states; apply terracotta color to day-of-week labels (Sun-Sat); add generous rounded corners (rounded-lg) to date cells with smooth hover and focus transitions; visually distinguish today's date with a terracotta ring (ring-2 ring-terracotta); style the selected date cell with a solid terracotta background (bg-terracotta) and cream text (text-cream); add small dot indicators beneath date numbers for dates with jap data stored in localStorage; ensure consistent use of Cinzel/Lato fonts; apply theme-aware backgrounds (light: cream/white, dark: dark-brown/muted) and text colors; preserve all existing date selection logic, jap count retrieval, and timezone-safe date key handling; ensure responsive layout that works on mobile and desktop without overflow"
         }
       ]
     }

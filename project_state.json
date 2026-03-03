@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 17,
+  "projectStateVersion": 19,
   "summary": "Spiritual naam jap / mantra counting PWA with datepicker and swipe-up count functionality.",
   "architectural_notes": [],
   "known_issues": [
@@ -99,6 +99,14 @@
         "REQ-14"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-redesign-the-calendar-view-in-dashboardpage-with-a-visually-attractive-elegant-and-spiritual-style-consistent-with-the-app-s-terracotta-cream-theme-the-calendar-must-feature-a-refined-month-header-with-stylish-prev-next-navigation-arrows-day-of-week-labels-styled-in-terracotta-accent-color-date-cells-with-generous-rounded-corners-and-subtle-hover-focus-states-clear-visual-distinction-for-today-s-date-e-g-terracotta-border-or-highlight-ring-a-bold-filled-terracotta-background-for-the-selected-active-date-cell-with-cream-text-dots-or-subtle-indicators-on-dates-that-have-jap-data-recorded-smooth-transitions-on-interaction-and-consistent-font-sizing-using-the-app-s-existing-cinzel-lato-font-stack-the-overall-calendar-container-should-use-a-card-style-surface-elevated-with-a-soft-shadow-with-a-dark-brown-or-cream-background-depending-on-the-current-theme-mode-all-existing-functionality-date-selection-jap-count-display-timezone-safe-date-keys-must-be-fully-preserved",
+      "title": "Redesign the calendar view in DashboardPage with a visually attractive, elegant, and spiritual style consistent with the app's terracotta/cream theme. The calendar must feature: a refined month header with stylish prev/next navigation arrows, day-of-week labels styled in terracotta accent color, date cells with generous rounded corners and subtle hover/focus states, clear visual distinction for today's date (e.g., terracotta border or highlight ring), a bold filled terracotta background for the selected/active date cell with cream text, dots or subtle indicators on dates that have jap data recorded, smooth transitions on interaction, and consistent font sizing using the app's existing Cinzel/Lato font stack. The overall calendar container should use a card-style surface (elevated with a soft shadow) with a dark-brown or cream background depending on the current theme mode. All existing functionality (date selection, jap count display, timezone-safe date keys) must be fully preserved.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -177,6 +185,12 @@
     {
       "id": "AR-12",
       "summary": "Fix calendar view in DashboardPage: shrink/resize it to be properly visible and well-fitted within the screen",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Make the calendar in DashboardPage more stylish — improve its visual design to be attractive, elegant, and consistent with the spiritual terracotta/cream theme",
       "reqIds": [],
       "status": "pending"
     }

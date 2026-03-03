@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Calendar as CalendarIcon, Sparkles, BookOpen } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Sparkles, BookOpen } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar } from '@/components/ui/calendar';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -16,6 +15,13 @@ const GODS = [
   { key: 'shiv', label: 'Shiv', emoji: '🕉️' },
   { key: 'durga', label: 'Durga', emoji: '⚔️' },
   { key: 'surya', label: 'Surya', emoji: '☀️' },
+];
+
+const DAY_LABELS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
 ];
 
 interface DayJapData {
@@ -32,6 +38,155 @@ function getLocalDateKey(date: Date = new Date()): string {
   return `${year}-${month}-${day}`;
 }
 
+function isSameDay(a: Date, b: Date): boolean {
+  return a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate();
+}
+
+// ─── Stylish Custom Calendar ────────────────────────────────────────────────
+interface SpiritualCalendarProps {
+  selected: Date | undefined;
+  onSelect: (date: Date) => void;
+  datesWithData: Set<string>;
+}
+
+function SpiritualCalendar({ selected, onSelect, datesWithData }: SpiritualCalendarProps) {
+  const today = new Date();
+  const [viewYear, setViewYear] = useState(today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(today.getMonth());
+
+  const goToPrevMonth = () => {
+    if (viewMonth === 0) { setViewMonth(11); setViewYear(y => y - 1); }
+    else setViewMonth(m => m - 1);
+  };
+
+  const goToNextMonth = () => {
+    if (viewMonth === 11) { setViewMonth(0); setViewYear(y => y + 1); }
+    else setViewMonth(m => m + 1);
+  };
+
+  // Build calendar grid: 6 rows × 7 cols
+  const calendarDays = useMemo(() => {
+    const firstDay = new Date(viewYear, viewMonth, 1).getDay(); // 0=Sun
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    const daysInPrevMonth = new Date(viewYear, viewMonth, 0).getDate();
+
+    const cells: { date: Date; isCurrentMonth: boolean }[] = [];
+
+    // Leading days from previous month
+    for (let i = firstDay - 1; i >= 0; i--) {
+      cells.push({
+        date: new Date(viewYear, viewMonth - 1, daysInPrevMonth - i),
+        isCurrentMonth: false,
+      });
+    }
+
+    // Current month days
+    for (let d = 1; d <= daysInMonth; d++) {
+      cells.push({ date: new Date(viewYear, viewMonth, d), isCurrentMonth: true });
+    }
+
+    // Trailing days to fill 6 rows
+    const remaining = 42 - cells.length;
+    for (let d = 1; d <= remaining; d++) {
+      cells.push({ date: new Date(viewYear, viewMonth + 1, d), isCurrentMonth: false });
+    }
+
+    return cells;
+  }, [viewYear, viewMonth]);
+
+  return (
+    <div className="spiritual-calendar w-full select-none">
+      {/* Month / Year Header */}
+      <div className="flex items-center justify-between mb-4 px-1">
+        <button
+          onClick={goToPrevMonth}
+          className="w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200
+            hover:bg-terracotta/15 active:scale-90 text-terracotta"
+          aria-label="Previous month"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+
+        <div className="text-center">
+          <span className="font-heading font-semibold text-base tracking-wide text-foreground">
+            {MONTH_NAMES[viewMonth]}
+          </span>
+          <span className="ml-2 text-sm font-medium text-muted-foreground">{viewYear}</span>
+        </div>
+
+        <button
+          onClick={goToNextMonth}
+          className="w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200
+            hover:bg-terracotta/15 active:scale-90 text-terracotta"
+          aria-label="Next month"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
+
+      {/* Day-of-week labels */}
+      <div className="grid grid-cols-7 mb-1">
+        {DAY_LABELS.map(label => (
+          <div
+            key={label}
+            className="text-center text-[11px] font-semibold tracking-widest uppercase text-terracotta py-1"
+          >
+            {label}
+          </div>
+        ))}
+      </div>
+
+      {/* Thin divider */}
+      <div className="h-px bg-terracotta/20 mb-2 mx-1" />
+
+      {/* Date grid */}
+      <div className="grid grid-cols-7 gap-y-1">
+        {calendarDays.map(({ date, isCurrentMonth }, idx) => {
+          const dateKey = getLocalDateKey(date);
+          const isToday = isSameDay(date, today);
+          const isSelected = selected ? isSameDay(date, selected) : false;
+          const hasData = datesWithData.has(dateKey);
+
+          return (
+            <div key={idx} className="flex justify-center">
+              <button
+                onClick={() => onSelect(date)}
+                className={[
+                  'relative flex flex-col items-center justify-center w-9 h-9 rounded-full text-sm font-medium',
+                  'transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta/60',
+                  isSelected
+                    ? 'bg-terracotta text-cream shadow-md scale-105'
+                    : isToday
+                      ? 'ring-2 ring-terracotta text-terracotta font-bold hover:bg-terracotta/10'
+                      : isCurrentMonth
+                        ? 'text-foreground hover:bg-terracotta/10 hover:text-terracotta'
+                        : 'text-muted-foreground/40 hover:bg-muted/30',
+                ].join(' ')}
+                aria-label={date.toDateString()}
+                aria-pressed={isSelected}
+              >
+                <span className="leading-none">{date.getDate()}</span>
+                {/* Jap data dot */}
+                {hasData && isCurrentMonth && (
+                  <span
+                    className={[
+                      'absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full',
+                      isSelected ? 'bg-cream/80' : 'bg-terracotta',
+                    ].join(' ')}
+                  />
+                )}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ─── Main Dashboard Page ─────────────────────────────────────────────────────
 export default function DashboardPage() {
   const { t } = useLanguage();
   const { currentDevotee } = useDevotee();
@@ -40,6 +195,33 @@ export default function DashboardPage() {
   const [chartData, setChartData] = useState<any[]>([]);
   const [aiReport, setAiReport] = useState<string>('');
   const [dayJapData, setDayJapData] = useState<DayJapData[]>([]);
+
+  // Collect all dates that have any jap data for the current devotee
+  const datesWithData = useMemo<Set<string>>(() => {
+    if (!currentDevotee) return new Set();
+    const keys = Object.keys(localStorage);
+    const prefix = `anantjap_history_${currentDevotee.id}_`;
+    const dates = new Set<string>();
+    keys.forEach(k => {
+      if (k.startsWith(prefix)) {
+        // key format: anantjap_history_{id}_{god}_{YYYY-MM-DD}
+        const parts = k.replace(prefix, '').split('_');
+        if (parts.length >= 2) {
+          const dateKey = parts[parts.length - 1];
+          if (/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) {
+            try {
+              const saved = localStorage.getItem(k);
+              if (saved) {
+                const parsed = JSON.parse(saved);
+                if (parsed.count > 0) dates.add(dateKey);
+              }
+            } catch { /* ignore */ }
+          }
+        }
+      }
+    });
+    return dates;
+  }, [currentDevotee, dayJapData]);
 
   useEffect(() => {
     if (currentDevotee) {
@@ -65,9 +247,9 @@ export default function DashboardPage() {
     setDayJapData(data);
   };
 
-  const handleDateSelect = (date: Date | undefined) => {
+  const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
-    if (date && currentDevotee) {
+    if (currentDevotee) {
       loadDayJapData(date);
     }
   };
@@ -197,7 +379,7 @@ May your path be filled with divine blessings and inner peace. 🕉️`;
 
   const totalDayJaps = dayJapData.reduce((sum, d) => sum + d.count, 0);
   const formattedSelectedDate = selectedDate
-    ? selectedDate.toLocaleDateString('en-IN', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })
+    ? selectedDate.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
     : '';
 
   return (
@@ -250,99 +432,129 @@ May your path be filled with divine blessings and inner peace. 🕉️`;
       </Tabs>
 
       {/* Calendar + Day Detail */}
-      <Card className="mb-5">
-        <CardHeader className="pb-1 pt-3 px-4">
-          <div className="flex items-center gap-2">
-            <CalendarIcon className="h-4 w-4 text-terracotta" />
-            <CardTitle className="text-sm">{t('calendar_view')}</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent className="p-3">
-          <div className="flex flex-col sm:flex-row gap-4 items-start">
+      <div className="mb-5">
+        {/* Section header */}
+        <div className="flex items-center gap-2 mb-3 px-1">
+          <CalendarIcon className="h-4 w-4 text-terracotta" />
+          <h2 className="text-sm font-semibold font-heading text-foreground tracking-wide">
+            {t('calendar_view')}
+          </h2>
+        </div>
 
-            {/* Compact Calendar */}
-            <div className="w-full sm:w-auto flex justify-center sm:justify-start shrink-0">
-              <div
-                style={{ '--cell-size': '2rem' } as React.CSSProperties}
-                className="rounded-lg border border-terracotta/20 overflow-hidden bg-background"
-              >
-                <Calendar
-                  mode="single"
-                  selected={selectedDate}
-                  onSelect={handleDateSelect}
-                  className="p-2 text-xs [&_[role=gridcell]]:text-xs [&_th]:text-xs [&_th]:font-medium [&_button]:text-xs"
-                />
+        <div className="flex flex-col lg:flex-row gap-4 items-start">
+
+          {/* ── Stylish Calendar Card ── */}
+          <div className="w-full lg:w-auto lg:shrink-0">
+            <div className="
+              relative overflow-hidden rounded-2xl
+              bg-card border border-terracotta/25
+              shadow-sacred
+              p-4 sm:p-5
+            ">
+              {/* Decorative top accent bar */}
+              <div className="absolute top-0 left-0 right-0 h-1 anant-gradient rounded-t-2xl" />
+
+              {/* Om symbol watermark */}
+              <div className="absolute bottom-3 right-4 text-5xl opacity-[0.04] pointer-events-none select-none font-heading">
+                🕉
+              </div>
+
+              <SpiritualCalendar
+                selected={selectedDate}
+                onSelect={handleDateSelect}
+                datesWithData={datesWithData}
+              />
+
+              {/* Legend */}
+              <div className="mt-3 pt-3 border-t border-terracotta/15 flex items-center gap-4 text-[11px] text-muted-foreground">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-terracotta inline-block" />
+                  <span>Jap recorded</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full ring-2 ring-terracotta inline-block" />
+                  <span>Today</span>
+                </div>
               </div>
             </div>
-
-            {/* Day Detail Panel */}
-            <div className="flex-1 w-full min-w-0">
-              {selectedDate ? (
-                <div className="rounded-xl border border-terracotta/30 bg-terracotta/5 dark:bg-terracotta/10 overflow-hidden h-full">
-                  {/* Header */}
-                  <div className="px-3 py-2 bg-terracotta/15 dark:bg-terracotta/20 border-b border-terracotta/20 flex items-center gap-2">
-                    <BookOpen className="h-3.5 w-3.5 text-terracotta shrink-0" />
-                    <span className="text-xs font-semibold text-terracotta font-cinzel truncate">
-                      {formattedSelectedDate}
-                    </span>
-                  </div>
-
-                  {/* God-wise counts */}
-                  <div className="p-3 space-y-1.5">
-                    {totalDayJaps === 0 ? (
-                      <div className="text-center py-6">
-                        <p className="text-2xl mb-1">🙏</p>
-                        <p className="text-xs font-medium text-muted-foreground">
-                          No japs recorded on this day
-                        </p>
-                        <p className="text-xs text-muted-foreground mt-0.5 opacity-70">
-                          Start your practice to see counts here
-                        </p>
-                      </div>
-                    ) : (
-                      <>
-                        {dayJapData.map(item =>
-                          item.count > 0 ? (
-                            <div
-                              key={item.god}
-                              className="flex items-center justify-between rounded-lg px-3 py-2 bg-background/60 dark:bg-background/30 border border-terracotta/15"
-                            >
-                              <div className="flex items-center gap-2">
-                                <span className="text-sm">{item.emoji}</span>
-                                <span className="text-xs font-medium text-foreground">{item.label}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <span className="text-sm font-bold text-terracotta">
-                                  {item.count.toLocaleString()}
-                                </span>
-                                <span className="text-xs text-muted-foreground">japs</span>
-                              </div>
-                            </div>
-                          ) : null
-                        )}
-                        <div className="pt-2 border-t border-terracotta/20 flex items-center justify-between">
-                          <span className="text-xs font-semibold text-foreground">Total</span>
-                          <div className="flex items-center gap-1">
-                            <span className="text-sm font-bold text-terracotta">
-                              {totalDayJaps.toLocaleString()}
-                            </span>
-                            <span className="text-xs text-muted-foreground">japs</span>
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <div className="rounded-xl border border-dashed border-terracotta/30 p-6 text-center h-full flex flex-col items-center justify-center">
-                  <CalendarIcon className="h-7 w-7 text-terracotta/40 mx-auto mb-2" />
-                  <p className="text-xs text-muted-foreground">Select a date to view jap counts</p>
-                </div>
-              )}
-            </div>
           </div>
-        </CardContent>
-      </Card>
+
+          {/* ── Day Detail Panel ── */}
+          <div className="flex-1 w-full min-w-0">
+            {selectedDate ? (
+              <div className="rounded-2xl border border-terracotta/25 bg-card shadow-sacred overflow-hidden h-full">
+                {/* Header */}
+                <div className="px-4 py-3 anant-gradient flex items-center gap-2.5">
+                  <BookOpen className="h-4 w-4 text-cream shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-[11px] text-cream/70 font-medium uppercase tracking-widest leading-none mb-0.5">
+                      Selected Date
+                    </p>
+                    <p className="text-sm font-semibold text-cream font-heading truncate leading-tight">
+                      {formattedSelectedDate}
+                    </p>
+                  </div>
+                </div>
+
+                {/* God-wise counts */}
+                <div className="p-4 space-y-2">
+                  {totalDayJaps === 0 ? (
+                    <div className="text-center py-8">
+                      <p className="text-3xl mb-2">🙏</p>
+                      <p className="text-sm font-medium text-muted-foreground">
+                        No japs recorded on this day
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-1 opacity-70">
+                        Start your practice to see counts here
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      {dayJapData.map(item =>
+                        item.count > 0 ? (
+                          <div
+                            key={item.god}
+                            className="flex items-center justify-between rounded-xl px-3 py-2.5
+                              bg-terracotta/5 dark:bg-terracotta/10
+                              border border-terracotta/15
+                              hover:border-terracotta/30 transition-colors"
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <span className="text-base">{item.emoji}</span>
+                              <span className="text-sm font-medium text-foreground">{item.label}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <span className="text-base font-bold text-terracotta">
+                                {item.count.toLocaleString()}
+                              </span>
+                              <span className="text-xs text-muted-foreground">japs</span>
+                            </div>
+                          </div>
+                        ) : null
+                      )}
+                      <div className="pt-2 border-t border-terracotta/20 flex items-center justify-between px-1">
+                        <span className="text-sm font-semibold text-foreground font-heading">Total</span>
+                        <div className="flex items-center gap-1">
+                          <span className="text-lg font-bold text-terracotta">
+                            {totalDayJaps.toLocaleString()}
+                          </span>
+                          <span className="text-xs text-muted-foreground">japs</span>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-dashed border-terracotta/30 p-8 text-center
+                h-full flex flex-col items-center justify-center bg-card/50">
+                <CalendarIcon className="h-8 w-8 text-terracotta/30 mx-auto mb-3" />
+                <p className="text-sm text-muted-foreground">Select a date to view jap counts</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
 
       {/* AI Divine Report */}
       <Card>

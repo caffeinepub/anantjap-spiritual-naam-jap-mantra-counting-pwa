@@ -1,41 +1,46 @@
 {
   "kind": "build_request",
-  "title": "Fix calendar view sizing in DashboardPage to be properly visible and well-fitted",
+  "title": "Redesign DashboardPage calendar with stylish, elegant spiritual aesthetic",
   "projectName": "AnantJap",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-14",
-      "text": "Resize and reformat the calendar view in DashboardPage so it fits properly within the screen without overflowing or being clipped. The calendar grid must be compact, fully visible, and well-proportioned on both mobile and desktop viewport sizes. Ensure the calendar container uses constrained max-width, appropriate font sizes for day labels and date numbers, and sufficient but not excessive padding/margins so no part of the calendar is hidden or cut off. The calendar should remain styled consistently with the app's terracotta/cream theme.",
+      "id": "REQ-15",
+      "text": "Redesign the calendar view in DashboardPage with a visually attractive, elegant, and spiritual style consistent with the app's terracotta/cream theme. The calendar must feature: a refined month header with stylish prev/next navigation arrows, day-of-week labels styled in terracotta accent color, date cells with generous rounded corners and subtle hover/focus states, clear visual distinction for today's date (e.g., terracotta border or highlight ring), a bold filled terracotta background for the selected/active date cell with cream text, dots or subtle indicators on dates that have jap data recorded, smooth transitions on interaction, and consistent font sizing using the app's existing Cinzel/Lato font stack. The overall calendar container should use a card-style surface (elevated with a soft shadow) with a dark-brown or cream background depending on the current theme mode. All existing functionality (date selection, jap count display, timezone-safe date keys) must be fully preserved.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "calenedar view to shring make proper visiable"
+          "still calender style to view not proper make it stylisy calendar"
         ]
       },
       "acceptanceCriteria": [
-        "The calendar in DashboardPage is fully visible within the viewport on both mobile and desktop screen sizes.",
-        "No calendar cells, day headers, or navigation controls are clipped or overflow the screen.",
-        "The calendar appears compact and well-proportioned — not oversized or too spread out.",
-        "Day labels and date numbers are legible at appropriate font sizes.",
-        "The calendar container has a constrained max-width so it does not span the full page width unnecessarily.",
-        "Styling remains consistent with the app's terracotta (#C47A4A), dark-brown (#2A1A0E), and cream (#FAF5EE) color palette."
+        "The calendar renders inside a visually elevated card with rounded corners and a soft shadow, using the terracotta/cream/dark-brown palette.",
+        "Month/year header is clearly displayed with styled prev/next navigation controls.",
+        "Day-of-week labels (Sun–Sat) are styled in the terracotta accent color.",
+        "Today's date is visually distinguished from other dates (e.g., terracotta ring or border).",
+        "The selected date cell has a solid terracotta background with cream-colored text.",
+        "Dates with jap data recorded display a small dot or accent indicator beneath the date number.",
+        "Hover and focus states on date cells are smooth and theme-consistent.",
+        "The calendar uses Cinzel or Lato fonts consistent with the rest of the app.",
+        "All existing date-click functionality (showing jap count for selected date) continues to work correctly.",
+        "The calendar is fully visible and non-overflowing on both mobile and desktop viewports.",
+        "Both light and dark theme modes apply appropriate background and text colors to the calendar."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
-    "Do not change the existing date storage or parsing logic — the off-by-one fix already applied must remain intact.",
-    "Do not alter any backend logic."
+    "Do not alter the date key storage format or timezone-safe logic already implemented for reading/writing jap counts.",
+    "Do not modify any files under frontend/src/hooks/ or frontend/src/components/ui.",
+    "Preserve all existing calendar functionality: date selection, jap count retrieval from localStorage, and selected-date display."
   ],
   "nonGoals": [
-    "Changing the calendar's date selection or jap count display logic.",
-    "Redesigning any page other than the DashboardPage calendar section.",
-    "Adding new calendar features or interactions.",
-    "Modifying backend data storage."
+    "No changes to backend logic.",
+    "No changes to any other page beyond DashboardPage.",
+    "No changes to the chart/graph sections of DashboardPage.",
+    "No new calendar library integrations — style the existing custom calendar implementation."
   ],
   "imageRequirements": {
     "required": [],

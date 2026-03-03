@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-03-03T13:12:45.348Z",
+  "generatedAt": "2026-03-03T13:23:36.237Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,8 +11,8 @@
     "implemented": 1,
     "items": [
       {
-        "id": "REQ-14",
-        "summary": "Resize and reformat the calendar view in DashboardPage so it fits properly within the screen without overflowing or being clipped. The calendar grid must be compact, fully visible, and well-proportioned on both mobile and desktop viewport sizes. Ensure the calendar container uses constrained max-width, appropriate font sizes for day labels and date numbers, and sufficient but not excessive padding/margins so no part of the calendar is hidden or cut off. The calendar should remain styled consistently with the app's terracotta/cream theme.",
+        "id": "REQ-15",
+        "summary": "Redesign the calendar view in DashboardPage with a visually attractive, elegant, and spiritual style consistent with the app's terracotta/cream theme. The calendar must feature: a refined month header with stylish prev/next navigation arrows, day-of-week labels styled in terracotta accent color, date cells with generous rounded corners and subtle hover/focus states, clear visual distinction for today's date (e.g., terracotta border or highlight ring), a bold filled terracotta background for the selected/active date cell with cream text, dots or subtle indicators on dates that have jap data recorded, smooth transitions on interaction, and consistent font sizing using the app's existing Cinzel/Lato font stack. The overall calendar container should use a card-style surface (elevated with a soft shadow) with a dark-brown or cream background depending on the current theme mode. All existing functionality (date selection, jap count display, timezone-safe date keys) must be fully preserved.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/pages/DashboardPage.tsx"

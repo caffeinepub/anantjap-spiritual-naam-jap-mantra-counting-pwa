@@ -1,13 +1,18 @@
 # Specification
 
 ## Summary
-**Goal:** Fix the calendar view in DashboardPage so it is fully visible, compact, and well-fitted on both mobile and desktop screens.
+**Goal:** Redesign the calendar in DashboardPage with a stylish, elegant spiritual aesthetic consistent with the app's terracotta/cream/dark-brown theme.
 
 **Planned changes:**
-- Constrain the calendar container with a max-width so it does not span the full page width unnecessarily.
-- Adjust font sizes for day labels and date numbers to be legible and compact.
-- Set appropriate padding and margins to prevent overflow or clipping of calendar cells, headers, and navigation controls.
-- Ensure the calendar remains fully visible within the viewport on both mobile and desktop sizes.
-- Maintain the existing terracotta (#C47A4A), dark-brown (#2A1A0E), and cream (#FAF5EE) color palette.
+- Wrap the calendar in a card-style container with rounded corners, soft shadow, and theme-appropriate background (dark-brown or cream)
+- Style the month/year header with refined typography and styled prev/next navigation arrows
+- Style day-of-week labels (Sun–Sat) in the terracotta accent color using Cinzel/Lato fonts
+- Add generous rounded corners to date cells with smooth hover and focus states
+- Visually distinguish today's date with a terracotta border or highlight ring
+- Apply a solid terracotta background with cream text to the selected/active date cell
+- Show a small dot or accent indicator beneath dates that have jap data recorded
+- Ensure the calendar is fully responsive and non-overflowing on mobile and desktop
+- Support both light and dark theme modes with appropriate colors
+- Preserve all existing functionality: date selection, jap count display, and timezone-safe date keys
 
-**User-visible outcome:** The calendar in DashboardPage is compact, fully visible, and properly proportioned on all screen sizes without any cells or controls being cut off or overflowing.
+**User-visible outcome:** The calendar on the Dashboard looks polished and spiritually themed, with clear visual cues for today, the selected date, and dates with recorded jap data, while all existing functionality continues to work.

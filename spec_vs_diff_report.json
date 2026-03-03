@@ -1,11 +1,19 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-03-03T13:12:45.345Z",
-  "summary": "The diff modifies DashboardPage.tsx to implement a compact calendar view with constrained sizing, and updates related documentation files. The implementation appears to address REQ-14 by using --cell-size: 2rem inline style and text-xs overrides to keep calendar cells small and fully visible, consistent with the terracotta/cream theme.",
+  "generatedAt": "2026-03-03T13:23:36.233Z",
+  "summary": "The diff implements a custom SpiritualCalendar component in DashboardPage.tsx that replaces the shadcn Calendar with a terracotta/cream spiritual aesthetic. The implementation covers most REQ-15 requirements including month navigation, day-of-week labels, date cell styling, today's ring indicator, selected-date terracotta fill, jap-data dot indicators, hover/focus states, and font usage. The existing date-click functionality and timezone-safe date keys are preserved.",
   "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.82,
+  "hallucinated_features": [
+    {
+      "description": "Decorative gradient accent bar added to the calendar",
+      "reason": "The frontend-file-summaries.txt mentions 'a decorative gradient accent bar' in the SpiritualCalendar component, which was not requested in the build requirements.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.72,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/src/pages/DashboardPage.tsx",
